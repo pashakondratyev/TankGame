@@ -1,5 +1,7 @@
-/**
- * Created by pavelkondratyev on 6/9/15.
- */
+import java.awt.*;
+import java.util.*;
+
 public class Map {
+
+
 }
