@@ -20,4 +20,5 @@ public class Map {
 	catch (Exception e) {}	
     }
 
+	for (int i = 0; i < map.length())
 }
