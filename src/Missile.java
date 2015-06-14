@@ -12,7 +12,7 @@ public class Missile {
             this.game= game;
         }
 
-        void move() {
+        void update() {
             if (x + xa < 0)
                 xa = 1;
             if (x + xa > game.getWidth() - 30)

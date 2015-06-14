@@ -35,9 +35,9 @@ public class Game extends JPanel implements Runnable, KeyListener{
         requestFocus();
     }
 
-    private void move() {
-        //m.move();
-        t.move();
+    private void update() {
+        //m.update();
+        t.update();
     }
 
 
@@ -73,7 +73,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
         long waitTime;
         while(isRunning){
             startTime = System.nanoTime();
-            move();
+            update();
             draw();
             gameOver();
             drawToScreen();
