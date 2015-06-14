@@ -39,7 +39,6 @@ public class Tank {
             ya = -1;
         if (e.getKeyCode() == KeyEvent.VK_DOWN)
             ya = 1;
-        if(e.getKeyCode() == KeyEvent.VK_SPACE)
 
 
     }
