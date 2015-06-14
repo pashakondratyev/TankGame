@@ -1,5 +1,8 @@
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.image.*;
+import javax.imageio.*;
+import java.io.*;
 
 public class Tank {
     int x = 0;
@@ -7,9 +10,18 @@ public class Tank {
     int y = 330;
     int ya = 0;
     private Game game;
+    private BufferedImage sprite, missile;
 
     public Tank(Game game) {
         this.game= game;
+        File img = new File("Assets/PlayerOne.png");
+        try{
+            sprite = ImageIO.read(img);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public void move() {
@@ -19,8 +31,8 @@ public class Tank {
             y = y + ya;
     }
 
-    public void paint(Graphics2D g) {
-        g.fillRect(x, y, 30, 60);
+    public void draw(Graphics2D g) {
+        g.drawImage(sprite, x, y, null);
     }
 
     public void keyReleased(KeyEvent e) {

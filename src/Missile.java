@@ -26,7 +26,7 @@ public class Missile {
             y = y + ya;
         }
 
-        public void paint(Graphics2D g) {
+        public void draw(Graphics2D g) {
             g.fillOval(x, y, 10, 10);
         }
     }
