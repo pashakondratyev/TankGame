@@ -2,6 +2,11 @@ import java.awt.*;
 import java.util.*;
 
 public class Map {
-    int x,y;
+
+
+
+    public Map( PlayerOne playerOne, PlayerTwo playerTwo, String currentMap ){
+
+    }
 
 }
