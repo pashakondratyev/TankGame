@@ -51,6 +51,10 @@ public class TankGame extends JPanel implements Runnable, KeyListener{
         }
     }
 
+    private void update() {
+    }
+
+
     public void run(){
         init();
         long startTime;
@@ -63,7 +67,7 @@ public class TankGame extends JPanel implements Runnable, KeyListener{
             draw();
             update();
             drawToScreen();
-            checkDeaths();
+            //checkDeaths();
             elapsedTime = System.nanoTime() - startTime;
             waitTime = targetTime - elapsedTime / 1000000;
             try {
@@ -79,15 +83,16 @@ public class TankGame extends JPanel implements Runnable, KeyListener{
     private void draw(){
         switcher.draw(g);
         if (! (menu)) {
-            player.draw(g);
-            for (Enemy e : enemies) {
-                e.draw(g);
-            }
-            for (Trap t : traps) {
-                t.draw(g);
-            }
+            //player.draw(g);
         }
     }
+
+    private void drawToScreen() {
+        Graphics g = getGraphics();
+        g.drawImage(image, 0, 0, HEIGHT, WIDTH, null);
+        g.dispose();
+    }
+
     public void keyTyped(KeyEvent key) {
     }
 

@@ -15,7 +15,7 @@ public class MapSwitcher {
 
     public LevelSwitcher(PlayerOne p,PlayerTwo q, Graphics2D graphics) {
         g = graphics;
-        levels = new LinkedList<Level>();
+        levels = new LinkedList<Map>();
         levels.add(new Menu(this));
         PlayerOne = p;
         PlayerTwo = q;
@@ -26,7 +26,7 @@ public class MapSwitcher {
 
     }
 
-    public LinkedList<Level> getLevels(){
+    public LinkedList<Map> getLevels(){
         return levels;
     }
 
