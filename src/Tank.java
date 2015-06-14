@@ -14,6 +14,7 @@ public class Tank {
     double y = 330;
     double ya = 0;
     double theta = 0;
+    double speed = .5;
     private Game game;
     private BufferedImage sprite, missile;
 
@@ -30,9 +31,9 @@ public class Tank {
 
     public void move() {
         if (x + xa > 0 && x + xa < game.getWidth()-30)
-            x = x + xa;
+            x = x + xa * speed;
         if (y + ya > 0 && y + ya < game.getHeight()-60)
-            y = y + ya;
+            y = y + ya * speed;
     }
 
     public void draw(Graphics2D g) {
@@ -45,14 +46,15 @@ public class Tank {
         double locationY = i.getHeight() / 2;
         AffineTransform tx = new AffineTransform();
 
-        tx.scale(.7,.7);
+        tx.scale(.5,.5);
         tx.rotate(rotationRequired, locationX, locationY);
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
         return op.filter(i, null);
     }
     public void keyReleased(KeyEvent e) {
-        //if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT)
-            //xa = 0;
+        if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT)
+            xa = 0;
+            ya = 0;
         if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN)
             ya = 0;
             xa = 0;
@@ -60,16 +62,31 @@ public class Tank {
 
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT)
-            theta -= 10;
+            theta -= 15;
         if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-            theta += 10;
+            theta += 15;
         if (e.getKeyCode() == KeyEvent.VK_UP)
-            ya = Math.cos(Math.toRadians(theta));
-            xa = Math.sin(Math.toRadians(theta));
-        if (e.getKeyCode() == KeyEvent.VK_DOWN)
             ya = -Math.cos(Math.toRadians(theta));
             xa = -Math.sin(Math.toRadians(theta));
+        if (e.getKeyCode() == KeyEvent.VK_DOWN)
+            ya = Math.cos(Math.toRadians(theta));
+            xa = Math.sin(Math.toRadians(theta));
     }
 }
 
 
+/*
+if(angle < 90){
+dx = Math.cos(angle);
+dy = -Math.sin(angle)*dpm;
+}else if(angle < 180){
+dx = -Math.sin(angle-90)*dpm;
+dy = -Math.cos(angle-90)*dpm;
+}else if(angle < 270){
+dx = -Math.cos(angle-180)*dpm;
+dy = Math.sin(angle-180)*dpm;
+}else{
+dx = Math.sin(angle-270)*dpm;
+dx = Math.cos(angle-270)*dpm;
+}
+ */

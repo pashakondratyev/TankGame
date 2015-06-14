@@ -22,7 +22,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
     Graphics2D g;
     BufferedImage image;
     Thread thread;
-    private int FPS = 60; // frames per second
+    private int FPS = 120; // frames per second
     private long targetTime = 1000 / FPS;
 
     Missile m;
