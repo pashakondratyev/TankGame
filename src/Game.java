@@ -22,7 +22,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
     Graphics2D g;
     BufferedImage image;
     Thread thread;
-    private int FPS = 60; // frames per second
+    private int FPS = 120; // frames per second
     private long targetTime = 1000 / FPS;
 
     Missile m;
@@ -35,9 +35,9 @@ public class Game extends JPanel implements Runnable, KeyListener{
         requestFocus();
     }
 
-    private void move() {
-        //m.move();
-        t.move();
+    private void update() {
+        //m.update();
+        t.update();
     }
 
 
@@ -73,7 +73,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
         long waitTime;
         while(isRunning){
             startTime = System.nanoTime();
-            move();
+            update();
             draw();
             gameOver();
             drawToScreen();

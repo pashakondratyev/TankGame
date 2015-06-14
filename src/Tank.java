@@ -13,16 +13,14 @@ public class Tank {
     double xa = 0;
     double y = 330;
     double ya = 0;
-    double a = 0;
-    int tmpangle = 0;
+    double theta = 0;
     private Game game;
     private BufferedImage sprite, missile;
-    boolean moveforward, movebackward;
 
     public Tank(Game game) {
         this.game= game;
         try{
-            sprite = ImageIO.read(new File("C:\\Users\\Bina\\Desktop\\TankGame\\TankGame\\src\\Assets\\PlayerOne.png"));
+            sprite = ImageIO.read(new File("Assets/PlayerOne.png"));
         }
         catch (Exception e){
             e.printStackTrace();
@@ -30,38 +28,15 @@ public class Tank {
 
     }
 
-    public void setA(int angle){
-        a = Math.toRadians(angle);
-    }
-
     public void move() {
-        if (tmpangle > 360)
-            tmpangle = 0;
-        else if (tmpangle < 0)
-            tmpangle = 360;
-
-        setA(tmpangle);
-
-        if (moveforward)
-            moveforward();
-        else if (movebackward)
-            movebackward();
-        System.out.println(tmpangle);
+        if (x + xa > 0 && x + xa < game.getWidth()-30)
+            x = x + xa;
+        if (y + ya > 0 && y + ya < game.getHeight()-60)
+            y = y + ya;
     }
 
-
-    public void moveforward() {
-        x += Math.sin(a);
-        y += Math.cos(a);
-    }
-
-    public void movebackward() {
-        x -= Math.sin(a);
-        y -= Math.cos(a);
-    }
     public void draw(Graphics2D g) {
-        rotate (a, sprite);
-        g.drawImage(sprite, (int)Math.round(x), (int)Math.round(y), null);
+        g.drawImage( rotate(theta, sprite), (int)Math.round(x), (int)Math.round(y), null);
     }
 
     public BufferedImage rotate( double degree , BufferedImage i) {
@@ -76,26 +51,24 @@ public class Tank {
         return op.filter(i, null);
     }
     public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_LEFT)
-            tmpangle += 0;
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-            tmpangle += 0;
-        if (e.getKeyCode() == KeyEvent.VK_UP)
-            moveforward = false;
-        if (e.getKeyCode() == KeyEvent.VK_DOWN)
-            movebackward = false;
-
+        //if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT)
+            //xa = 0;
+        if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN)
+            ya = 0;
+            xa = 0;
     }
 
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT)
-            tmpangle -= 10;
+            theta -= 10;
         if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-            tmpangle += 10;
+            theta += 10;
         if (e.getKeyCode() == KeyEvent.VK_UP)
-            moveforward = true;
+            ya = Math.cos(Math.toRadians(theta));
+            xa = Math.sin(Math.toRadians(theta));
         if (e.getKeyCode() == KeyEvent.VK_DOWN)
-           movebackward = true;
+            ya = -Math.cos(Math.toRadians(theta));
+            xa = -Math.sin(Math.toRadians(theta));
     }
 }
 /*
@@ -104,6 +77,5 @@ direction.y = (float) Math.sin(Math.toRadians(rotation));
 if (direction.length() > 0) {
     direction = direction.normalise();
 }
-fiiller
  */
 
