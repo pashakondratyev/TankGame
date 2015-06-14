@@ -42,9 +42,51 @@ public class TankGame extends JPanel implements Runnable, KeyListener{
 
     }
 
+    public void addNotify() {
+        super.addNotify();
+        if (thread == null) {
+            thread = new Thread(this);
+            addKeyListener(this);
+            thread.start();
+        }
+    }
+
     public void run(){
         init();
+        long startTime;
+        long elapsedTime;
+        long waitTime;
 
+        while(isRunning) {
+
+            startTime = System.nanoTime();
+            draw();
+            update();
+            drawToScreen();
+            checkDeaths();
+            elapsedTime = System.nanoTime() - startTime;
+            waitTime = targetTime - elapsedTime / 1000000;
+            try {
+                if (waitTime < 0)
+                    waitTime = 0;
+                Thread.sleep(waitTime);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void draw(){
+        switcher.draw(g);
+        if (! (menu)) {
+            player.draw(g);
+            for (Enemy e : enemies) {
+                e.draw(g);
+            }
+            for (Trap t : traps) {
+                t.draw(g);
+            }
+        }
     }
     public void keyTyped(KeyEvent key) {
     }
