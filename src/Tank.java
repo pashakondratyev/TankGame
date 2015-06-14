@@ -9,10 +9,10 @@ import java.lang.Math;
 
 
 public class Tank {
-    int x = 0;
-    int xa = 0;
-    int y = 330;
-    int ya = 0;
+    double x = 0;
+    double xa = 0;
+    double y = 330;
+    double ya = 0;
     double theta = 0;
     private Game game;
     private BufferedImage sprite, missile;
@@ -23,7 +23,6 @@ public class Tank {
             sprite = ImageIO.read(new File("Assets/PlayerOne.png"));
         }
         catch (Exception e){
-            System.out.println("AY");
             e.printStackTrace();
         }
 
@@ -37,34 +36,39 @@ public class Tank {
     }
 
     public void draw(Graphics2D g) {
-        double rotationRequired = Math.toRadians(theta);
-        double locationX = sprite.getWidth() / 2;
-        double locationY = sprite.getHeight() / 2;
-
-        AffineTransform tx = new AffineTransform();
-        AffineTransformOp op = new AffineTransformOp(tx.getRotateInstance(rotationRequired, locationX, locationY)
-                , AffineTransformOp.TYPE_BILINEAR);
-        g.drawImage(op.filter(sprite, null), x, y, null);
+        g.drawImage( rotate(theta, sprite), (int)Math.round(x), (int)Math.round(y), null);
     }
 
+    public BufferedImage rotate( double degree , BufferedImage i) {
+        double rotationRequired = Math.toRadians(degree);
+        double locationX = i.getWidth() / 1.5;
+        double locationY = i.getHeight() / 1.5;
+        AffineTransform tx = new AffineTransform();
+
+        tx.scale(.7,.7);
+        tx.rotate(rotationRequired, locationX, locationY);
+        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+        return op.filter(i, null);
+    }
     public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT)
-            xa = 0;
+        //if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT)
+            //xa = 0;
         if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN)
             ya = 0;
+            xa = 0;
     }
 
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT)
-            theta -= .01;
+            theta -= 10;
         if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-            theta += .01;
+            theta += 10;
         if (e.getKeyCode() == KeyEvent.VK_UP)
-            xa = (int) Math.cos(Math.toRadians(theta));
-            ya = (int) Math.sin(Math.toRadians(theta));
+            ya = Math.cos(Math.toRadians(theta));
+            xa = Math.sin(Math.toRadians(theta));
         if (e.getKeyCode() == KeyEvent.VK_DOWN)
-            xa = -(int) Math.cos(Math.toRadians(theta));
-            ya = -(int) Math.sin(Math.toRadians(theta));
+            ya = -Math.cos(Math.toRadians(theta));
+            xa = -Math.sin(Math.toRadians(theta));
     }
 }
 /*
