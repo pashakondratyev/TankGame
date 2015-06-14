@@ -1,26 +1,38 @@
 import java.awt.*;
 import java.util.*;
+import java.io.*;
 
 public class Map {
     int x, y;
     char[][] map;
-    int mapHeight;
-    int mapWidth;
+    Tile[][] tiles;
+    int mapHeight, mapWidth;
+    Scanner sc;
+    ArrayList<String> Maps = new ArrayList<String>();
 
-    public Map(PlayerOne p, PlayerTwo q, String map) {
+
+    public Map(PlayerOne p, PlayerTwo q, Graphics2D g) {
+
         try {
-            Scanner sc = new Scanner(new File("map.dat"));
-            int j = 0;
-
-            while (sc.hasNext()) {
-                String line = sc.nextLine();
-                for (int i = 0; i < maxX; i++) {
-                    map[i][j] = line.charAt(i);
-                }
-                j++;
-            }
+            sc = new Scanner(new File("map.dat"));
         }
         catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        mapWidth = Integer.parseInt(sc.nextLine());
+        mapHeight = Integer.parseInt(sc.nextLine());
+
+        map = new char[mapHeight][mapWidth];
+        tiles = new Tile[mapHeight][mapWidth];
+
+        int j = 0;
+        while (sc.hasNext()) {
+            String line = sc.nextLine();
+            for (int i = 0; i < mapWidth; i++) {
+                map[i][j] = line.charAt(i);
+            }
+            j++;
         }
     }
     //for (int i = 0; i < map.length())

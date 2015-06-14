@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class MapSwitcher {
 
-    private LinkedList<Map> levels;
+    private LinkedList<Map> Maps;
     private PlayerOne PlayerOne;
     private PlayerTwo PlayerTwo;
     private int currentLevel;
@@ -15,36 +15,36 @@ public class MapSwitcher {
 
     public MapSwitcher(PlayerOne p,PlayerTwo q, Graphics2D graphics) {
         g = graphics;
-        levels = new LinkedList<Map>();
-        levels.add(new Menu(this));
+        Maps = new LinkedList<Map>();
+        Maps.add(new Menu(this));
         PlayerOne = p;
         PlayerTwo = q;
-        levels.add(new Map(p,q,g));
-        //levels.add(new Credits(this));
+        Maps.add(new Map(p, q, g));
+        //Maps.add(new Credits(this));
         //currentLevel = MENU;
         //Game.menu = true;
 
     }
 
     public LinkedList<Map> getLevels(){
-        return levels;
+        return Maps;
     }
-
+/*
     public void setlevel(int level){
         currentLevel = level;
         //player.setXY(0,0);
-        levels.get(currentLevel).init();
+        Maps.get(currentLevel).init();
     }
 
     public void update() {
-        levels.get(currentLevel).update();
-        if (levels.get(currentLevel).getNextLevel())
+        Maps.get(currentLevel).update();
+        if (Maps.get(currentLevel).getNextLevel())
             setlevel(currentLevel+1);
     }
-
+*/
     public void draw(java.awt.Graphics2D g) {
-        if (levels.get(currentLevel) != null)
-            levels.get(currentLevel).draw(g);
+        if (Maps.get(currentLevel) != null)
+            Maps.get(currentLevel).draw(g);
         else {
             g.setColor(java.awt.Color.BLACK);
             g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
@@ -52,15 +52,15 @@ public class MapSwitcher {
     }
 
     public void keyPressed(int k) {
-        if (levels.get(currentLevel) instanceof Menu)
-            levels.get(currentLevel).keyPressed(k);
+        if (Maps.get(currentLevel) instanceof Menu)
+            Maps.get(currentLevel).keyPressed(k);
         else
-            (levels.get(currentLevel)).keyPressed(k);
+            (Maps.get(currentLevel)).keyPressed(k);
 
     }
 
-    public Level getCurrentLevel() {
-        return levels.get(currentLevel);
+    public Map getCurrentLevel() {
+        return Maps.get(currentLevel);
     }
 
     public Player getPlayer() {
@@ -68,7 +68,7 @@ public class MapSwitcher {
     }
 
     public void keyReleased(int k) {
-        levels.get(currentLevel).keyReleased(k);
+        Maps.get(currentLevel).keyReleased(k);
       }
     }
 
