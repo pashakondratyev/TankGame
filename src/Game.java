@@ -79,7 +79,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
             drawToScreen();
 
             elapsedTime = System.nanoTime() - startTime;
-            waitTime = targetTime - elapsedTime / 1000000;
+            waitTime = targetTime - elapsedTime / 100000;
             try {
                 if (waitTime < 0)
                     waitTime = 0;
