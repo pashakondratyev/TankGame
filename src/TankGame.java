@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.*;
+import java.awt.event.*;
 import java.awt.event.KeyListener;
 
 public class TankGame extends JPanel implements Runnable, KeyListener{
@@ -44,5 +45,14 @@ public class TankGame extends JPanel implements Runnable, KeyListener{
     public void run(){
         init();
 
+    }
+    public void keyTyped(KeyEvent key) {
+    }
+
+    public void keyPressed(KeyEvent key) {
+        //switcher.keyPressed(key.getKeyCode());
+    }
+    public void keyReleased(KeyEvent key) {
+        //switcher.keyReleased(key.getKeyCode());
     }
 }

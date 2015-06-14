@@ -1,6 +1,6 @@
 import javax.swing.JFrame;
-public class Window {
-    public static void Main(String[] args){
+public class Window{
+    public static void main(String[] args){
         JFrame game = new JFrame("TankGame");
         game.setContentPane(new TankGame());
         game.setVisible(true);
