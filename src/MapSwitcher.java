@@ -1,3 +1,4 @@
+/*
 import java.util.ArrayList;
 import java.awt.*;
 import java.util.LinkedList;
@@ -5,8 +6,8 @@ import java.util.LinkedList;
 public class MapSwitcher {
 
     private LinkedList<Map> Maps;
-    private PlayerOne PlayerOne;
-    private PlayerTwo PlayerTwo;
+    private PlayerOne p1;
+    private PlayerTwo p2;
     private int currentLevel;
     private Graphics2D g;
     public static final int MENU = 0;
@@ -17,8 +18,8 @@ public class MapSwitcher {
         g = graphics;
         Maps = new LinkedList<Map>();
         Maps.add(new Menu(this));
-        PlayerOne = p;
-        PlayerTwo = q;
+        p1 = p;
+        p2 = q;
         Maps.add(new Map(p, q, g));
         //Maps.add(new Credits(this));
         //currentLevel = MENU;
@@ -42,6 +43,7 @@ public class MapSwitcher {
             setlevel(currentLevel+1);
     }
 */
+/*
     public void draw(java.awt.Graphics2D g) {
         if (Maps.get(currentLevel) != null)
             Maps.get(currentLevel).draw(g);
@@ -63,12 +65,14 @@ public class MapSwitcher {
         return Maps.get(currentLevel);
     }
 
-    public Player getPlayer() {
-        return player;
+    public PlayerOne getPlayer1() {
+        return p1;
     }
+
+
 
     public void keyReleased(int k) {
         Maps.get(currentLevel).keyReleased(k);
       }
     }
-
+*/

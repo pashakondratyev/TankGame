@@ -1,3 +1,4 @@
+/*
 import java.awt.*;
 import java.util.*;
 import java.io.*;
@@ -35,7 +36,7 @@ public class Map {
             j++;
         }
     }
-    //for (int i = 0; i < map.length())
+
 
     public void drawTiles(Graphics2D g){
         x = 0;
@@ -47,18 +48,21 @@ public class Map {
             x = 0;
             for(int j = 0; j < mapWidth; j++){
                 int type = map[i][j];
-                if(type == '#'){
-                    g.drawImage(sprites[3], x, y, null);
+                if(type == '$'){
+                    Tile wall = new Tile(x, y, "Wall.png", true )
+                    g.drawImage(wall, x, y, null);
                     solid = false;
                 }
-                else if(type == '$'){
-                    g.drawImage(sprites[0], x, y, null);
+                else if(type == '#'){
+                    Tile sand = new Tile(x,y, "")
+                    g.drawImage(sand, x, y, null);
                     solid = true;
                 }
                 x += tileSize; //move column
             }
-            y += tileSize; //moves over row when 1 is finished (now it should start at 0,0)
+            y += tileSize; //moves over row ,when 1 is finished (now it should start at 0,0)
         }
     }
 
 }
+*/

@@ -7,5 +7,6 @@ public class Window{
         game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         game.setResizable(false);
         game.pack();
+
     }
 }

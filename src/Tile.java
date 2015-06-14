@@ -9,7 +9,7 @@ public class Tile {
     private double cx, cy, size;
     private BufferedImage sprite;
 
-    public Tile(int x, int y, int size, BufferedImage s, boolean t){
+    public Tile(int x, int y, BufferedImage s, boolean t){
         type = t;
         cx = (double)(x+16);
         cy = (double)(y+16);

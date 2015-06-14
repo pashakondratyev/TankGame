@@ -3,16 +3,22 @@ import java.awt.*;
 import java.awt.image.*;
 import java.awt.event.*;
 import java.awt.event.KeyListener;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public class TankGame extends JPanel implements Runnable, KeyListener{
+
+public class TankGame extends JPanel implements Runnable { //KeyListener {
 
     // game window size
     public static final int WIDTH = 720;
     public static final int HEIGHT = 480;
 
 
-    private PlayerOne PlayerOne;
-    private PlayerTwo PlayerTwo;
+    private PlayerOne p1;
+    private PlayerTwo p2;
     private Thread thread;
     private Boolean isRunning, bothAlive, menu;
     private int FPS = 60; // frames per second
@@ -21,27 +27,27 @@ public class TankGame extends JPanel implements Runnable, KeyListener{
     private BufferedImage image;
     private Graphics2D g;
 
-    private MapSwitcher switcher;
+    //private MapSwitcher switcher;
 
-    public TankGame(){
+    public TankGame() {
         super();
-        setPreferredSize(new Dimension(WIDTH,HEIGHT));
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setFocusable(true);
         requestFocus();
     }
 
-    public void init(){
-        PlayerOne = new PlayerOne();
-        PlayerTwo = new PlayerTwo();
+    public void init() {
+        p1 = new PlayerOne();
+        p2 = new PlayerTwo();
         image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         g = (Graphics2D) image.getGraphics();
         isRunning = true;
 
-        BufferedImage bufferedPlayerOne;
-        BufferedImage bufferedPlayerTwo;
+        BufferedImage p1;
+        BufferedImage p2;
 
     }
-
+/*
     public void addNotify() {
         super.addNotify();
         if (thread == null) {
@@ -50,18 +56,21 @@ public class TankGame extends JPanel implements Runnable, KeyListener{
             thread.start();
         }
     }
-
+*/
     private void update() {
     }
 
+    public void run() {}
+    public void keyReleased(KeyEvent e){}
 
-    public void run(){
+/*
+    public void run() {
         init();
         long startTime;
         long elapsedTime;
         long waitTime;
 
-        while(isRunning) {
+        while (isRunning) {
 
             startTime = System.nanoTime();
             draw();
@@ -102,4 +111,5 @@ public class TankGame extends JPanel implements Runnable, KeyListener{
     public void keyReleased(KeyEvent key) {
         //switcher.keyReleased(key.getKeyCode());
     }
+*/
 }
