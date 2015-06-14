@@ -13,7 +13,7 @@ public class MapSwitcher {
     public static final int LEVEL1 = 1;
 
 
-    public LevelSwitcher(PlayerOne p,PlayerTwo q, Graphics2D graphics) {
+    public MapSwitcher(PlayerOne p,PlayerTwo q, Graphics2D graphics) {
         g = graphics;
         levels = new LinkedList<Map>();
         levels.add(new Menu(this));
@@ -71,4 +71,4 @@ public class MapSwitcher {
         levels.get(currentLevel).keyReleased(k);
       }
     }
-}
+
