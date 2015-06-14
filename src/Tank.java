@@ -9,7 +9,7 @@ import java.lang.Math;
 
 
 public class Tank {
-    double x = 0;
+    double x = 100;
     double xa = 0;
     double y = 330;
     double ya = 0;
@@ -20,7 +20,7 @@ public class Tank {
     public Tank(Game game) {
         this.game= game;
         try{
-            sprite = ImageIO.read(new File("Assets/PlayerOne.png"));
+            sprite = ImageIO.read(new File("Assets" + File.separator + "PlayerOne.png"));
         }
         catch (Exception e){
             e.printStackTrace();
@@ -71,11 +71,5 @@ public class Tank {
             xa = -Math.sin(Math.toRadians(theta));
     }
 }
-/*
-direction.x = (float) Math.cos(Math.toRadians(rotation));
-direction.y = (float) Math.sin(Math.toRadians(rotation));
-if (direction.length() > 0) {
-    direction = direction.normalise();
-}
- */
+
 
