@@ -30,7 +30,6 @@ public class Game extends JPanel implements Runnable, KeyListener{
 
     public Game(){
         super();
-
         setPreferredSize(new Dimension(WIDTH,HEIGHT));
         setFocusable(true);
         requestFocus();
@@ -51,7 +50,9 @@ public class Game extends JPanel implements Runnable, KeyListener{
         }
     }
 
-    public void draw(Graphics2D g) {
+    public void draw() {
+        g.fillRect(0, 0, WIDTH, HEIGHT);  //TEMP while we work on background
+        g.setColor(Color.WHITE);
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         m.draw(g);
@@ -73,7 +74,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
         while(isRunning){
             startTime = System.nanoTime();
             move();
-            draw(g);
+            draw();
             gameOver();
             drawToScreen();
 
