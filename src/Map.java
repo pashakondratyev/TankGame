@@ -47,11 +47,11 @@ public class Map {
             x = 0;
             for(int j = 0; j < mapWidth; j++){
                 int type = map[i][j];
-                if(type == #){
+                if(type == '#'){
                     g.drawImage(sprites[3], x, y, null);
                     solid = false;
                 }
-                else if(type == $){
+                else if(type == '$'){
                     g.drawImage(sprites[0], x, y, null);
                     solid = true;
                 }

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.awt.*;
 import java.util.LinkedList;
-
+//Hi Inan
 public class MapSwitcher {
 
     private LinkedList<Map> Maps;
