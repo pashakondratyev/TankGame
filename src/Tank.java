@@ -14,12 +14,17 @@ public class Tank {
     double y = 330;
     double ya = 0;
     double theta = 0;
-    double speed = .5;
+    double dtheta = 5;
+    double speed = 2;
     private Game game;
     private BufferedImage sprite, missile;
 
+    Boolean MoveUp, MoveDown;
+
     public Tank(Game game) {
         this.game= game;
+        MoveDown = false;
+        MoveUp = false;
         try{
             sprite = ImageIO.read(new File("Assets" + File.separator + "PlayerOne.png"));
         }
@@ -30,10 +35,10 @@ public class Tank {
     }
 
     public void update() {
-        if (x + xa > 0 && x + xa < game.getWidth()-30)
-            x = x + xa * speed;
-        if (y + ya > 0 && y + ya < game.getHeight()-60)
-            y = y + ya * speed;
+        if (x + xa > 0 && x + xa < game.getWidth()-30 && MoveUp)
+            x = x + xa;
+        if (y + ya > 0 && y + ya < game.getHeight()-60 && MoveUp)
+            y = y + ya;
     }
 
     public void draw(Graphics2D g) {
@@ -52,24 +57,39 @@ public class Tank {
         return op.filter(i, null);
     }
     public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT)
-            keyPressed(e);
+        //if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT)
+
         if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN)
-            ya = 0;
-            xa = 0;
+            MoveUp = false;
+            MoveDown = false;
     }
 
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT)
-            theta -= 15;
+            MoveLeft();
         if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-            theta += 15;
+            MoveRight();
         if (e.getKeyCode() == KeyEvent.VK_UP)
-            ya = -Math.cos(Math.toRadians(theta));
-            xa = -Math.sin(Math.toRadians(theta));
+            MoveUp();
         if (e.getKeyCode() == KeyEvent.VK_DOWN)
-            ya = Math.cos(Math.toRadians(theta));
-            xa = Math.sin(Math.toRadians(theta));
+            MoveDown();
+    }
+
+    public void MoveUp(){
+        MoveUp = true;
+    }
+    public void MoveDown(){
+        MoveDown = true;
+    }
+    public void MoveRight(){
+        theta += dtheta;
+        ya = Math.cos(theta);
+        xa = -Math.sin(theta);
+    }
+    public void MoveLeft(){
+        theta -= dtheta;
+        ya = Math.cos(theta);
+        xa = -Math.sin(theta);
     }
 }
 
