@@ -34,7 +34,7 @@ public class Tank {
         a = Math.toRadians(angle);
     }
 
-    public void move() {
+    public void update() {
         if (tmpangle > 360)
             tmpangle = 0;
         else if (tmpangle < 0)
@@ -52,19 +52,19 @@ public class Tank {
 
     public void moveforward() {
         x += Math.sin(a);
-        y += Math.cos(a);
+        y -= Math.cos(a);
     }
 
     public void movebackward() {
         x -= Math.sin(a);
-        y -= Math.cos(a);
+        y += Math.cos(a);
     }
     public void draw(Graphics2D g) {
-        g.drawImage( rotate(theta, sprite), (int)Math.round(x), (int)Math.round(y), null);
+        g.drawImage( rotate(a, sprite), (int)Math.round(x), (int)Math.round(y), null);
     }
 
     public BufferedImage rotate( double degree , BufferedImage i) {
-        double rotationRequired = Math.toRadians(degree);
+        double rotationRequired = degree;
         double locationX = i.getWidth() / 2;
         double locationY = i.getHeight() / 2;
         AffineTransform tx = new AffineTransform();
@@ -94,23 +94,7 @@ public class Tank {
         if (e.getKeyCode() == KeyEvent.VK_UP)
             moveforward = true;
         if (e.getKeyCode() == KeyEvent.VK_DOWN)
-           movebackward = true;
+            movebackward = true;
     }
 }
 
-
-/*
-if(angle < 90){
-dx = Math.cos(angle);
-dy = -Math.sin(angle)*dpm;
-}else if(angle < 180){
-dx = -Math.sin(angle-90)*dpm;
-dy = -Math.cos(angle-90)*dpm;
-}else if(angle < 270){
-dx = -Math.cos(angle-180)*dpm;
-dy = Math.sin(angle-180)*dpm;
-}else{
-dx = Math.sin(angle-270)*dpm;
-dx = Math.cos(angle-270)*dpm;
-}
- */
