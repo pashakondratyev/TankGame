@@ -41,8 +41,8 @@ public class Tank {
 
     public BufferedImage rotate( double degree , BufferedImage i) {
         double rotationRequired = Math.toRadians(degree);
-        double locationX = i.getWidth() / 1.5;
-        double locationY = i.getHeight() / 1.5;
+        double locationX = i.getWidth() / 2;
+        double locationY = i.getHeight() / 2;
         AffineTransform tx = new AffineTransform();
 
         tx.scale(.7,.7);
