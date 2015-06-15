@@ -1,3 +1,5 @@
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.io.*;
 import java.util.*;
 import java.awt.image.BufferedImage;
@@ -33,15 +35,18 @@ public class Map{
 
         try{
             SpriteSand = ImageIO.read(new File("Assets/Sand.png"));
+            SpriteSand = scaleDown(SpriteSand);
             SpriteWall = ImageIO.read(new File("Assets/Wall.png"));
+            SpriteWall = scaleDown(SpriteWall);
         }
         catch (IOException e){
             e.printStackTrace();
         }
 
 
-        mapWidth = 36;
-        mapHeight = 24;
+
+        mapWidth = 32;
+        mapHeight = 20;
         map = new char[mapHeight][mapWidth];
         tiles = new Tile[mapHeight][mapWidth];
 
@@ -49,28 +54,35 @@ public class Map{
         for(int i = 0; i < mapHeight; i++){
             String line = sc.nextLine();
             char[] elements = line.toCharArray();
-            System.out.print(elements[0]);
             for(int j = 0; j < mapWidth; j++){
                 map[i][j] = elements[j];
             }
         }
     }
 
+    public BufferedImage scaleDown(BufferedImage i) {
+        AffineTransform tx = new AffineTransform();
+        tx.scale(.25,.25);
+        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+        return op.filter(i, null);
+    }
 
     public void drawTiles(Graphics2D grid) {
         for (int i = 0; i < mapHeight; i++) {
             for (int j = 0; j < mapWidth; j++) {
                 char symbol = map[i][j];
+                int sx = j * 32;
+                int sy = i * 32;
                 if (symbol == '$') { //wall
-                    grid.drawImage(SpriteWall, x, y, null);
+                    grid.drawImage(SpriteWall, sx, sy, null);
                     solid = true;
                 }
                 else if (symbol == '#') { //sand
-                    grid.drawImage(SpriteSand, x, y, null);
+                    grid.drawImage(SpriteSand, sx, sy, null);
                     solid = false;
                 }
                 else {
-                    grid.drawImage(SpriteSand, x, y, null);
+                    grid.drawImage(SpriteSand, sx, sy, null);
                     solid = false;
                 }
 

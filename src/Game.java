@@ -13,8 +13,8 @@ import java.awt.image.BufferedImage;
 @SuppressWarnings("serial")
 public class Game extends JPanel implements Runnable, KeyListener{
 
-    public static final int WIDTH = 720;
-    public static final int HEIGHT = 480;
+    public static final int WIDTH = 1024;
+    public static final int HEIGHT = 640;
 
     int x = 0;
     int y = 0;
@@ -58,7 +58,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         map.drawTiles(g);
-        m.draw(g);
+        //m.draw(g);
         t.draw(g);
     }
 
