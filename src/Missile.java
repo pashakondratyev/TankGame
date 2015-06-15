@@ -8,7 +8,9 @@ public class Missile {
         int ya = 1;
         private Game game;
 
-        public Missile(Game game) {
+        public Missile(Game game, int xSpawn, int ySpawn) {
+            x = xSpawn;
+            y = ySpawn;
             this.game= game;
         }
 

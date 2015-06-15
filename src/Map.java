@@ -36,9 +36,9 @@ public class Map{
         }
 
         try{
-            SpriteSand = ImageIO.read(new File("Assets/Sand.png"));
+            SpriteSand = ImageIO.read(new File("Assets" + File.separator + "Sand.png"));
             SpriteSand = scaleDown(SpriteSand);
-            SpriteWall = ImageIO.read(new File("Assets/Wall.png"));
+            SpriteWall = ImageIO.read(new File("Assets" + File.separator + "Wall.png"));
             SpriteWall = scaleDown(SpriteWall);
         }
         catch (IOException e){

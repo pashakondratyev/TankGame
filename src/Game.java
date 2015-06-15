@@ -17,7 +17,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 
     int x = 0;
     int y = 0;
-    Boolean isRunning;
+    Boolean isRunning, displayMenu;
     Graphics2D g;
     BufferedImage image;
     Thread thread;
@@ -98,7 +98,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
         isRunning = true;
         image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         g = (Graphics2D) image.getGraphics();
-        m = new Missile(this);
+        //m = new Missile(this);
         map = new Map();
         map.drawTiles(g);
         t = new TankOne(this, map);
