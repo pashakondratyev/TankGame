@@ -19,6 +19,8 @@ public class Map{
     boolean nextLevel;
     boolean solid = false;
     private BufferedImage SpriteSand, SpriteWall;
+    private int Player1x, Player1y;
+    private int Player2x, Player2y;
 
     public Map(){
 
@@ -50,7 +52,6 @@ public class Map{
         map = new char[mapHeight][mapWidth];
         tiles = new Tile[mapHeight][mapWidth];
 
-        String toSplit = "\\s+";
         for(int i = 0; i < mapHeight; i++){
             String line = sc.nextLine();
             char[] elements = line.toCharArray();
@@ -75,19 +76,45 @@ public class Map{
                 int sy = i * 32;
                 if (symbol == '$') { //wall
                     grid.drawImage(SpriteWall, sx, sy, null);
-                    solid = true;
+                    tiles[i][j] = new Tile( i, j, true);
                 }
                 else if (symbol == '#') { //sand
                     grid.drawImage(SpriteSand, sx, sy, null);
-                    solid = false;
+                    tiles[i][j] = new Tile( i, j, false);
                 }
-                else {
+                else if (symbol == '1'){ //Player one
                     grid.drawImage(SpriteSand, sx, sy, null);
-                    solid = false;
+                    tiles[i][j] = new Tile( i, j, false);
+                    Player1x = j * 32;
+                    Player1y = i * 32;
                 }
-
+                else if (symbol == '2') { //Player one
+                    grid.drawImage(SpriteSand, sx, sy, null);
+                    tiles[i][j] = new Tile(i, j, false);
+                    Player2x = j * 32;
+                    Player2y = i * 32;
+                }
             }
         }
+    }
+    public int getPlayer1x(){
+        return Player1x;
+    }
+    public int getPlayer1y(){
+        return Player1y;
+    }
+    public int getPlayer2x(){
+        return Player2x;
+    }
+    public int getPlayer2y(){
+        return Player2y;
+    }
+    public Tile[][] getTileMap(){
+        return tiles;
+    }
+
+    public Boolean isTileSolid( int x, int y){
+        return tiles[y][x].isSolid();
     }
 
     public char[][] getMap(){
