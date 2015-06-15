@@ -14,6 +14,7 @@ public class Tank {
     double y = 50;
     double ya = 0;
     double a = 0;
+    double speed = 1.5;
     int tmpangle = 0;
     private Game game;
     private BufferedImage sprite, missile;
@@ -50,13 +51,13 @@ public class Tank {
 
 
     public void moveforward() {
-        x += Math.sin(a);
-        y -= Math.cos(a);
+        x += Math.sin(a) * speed;
+        y -= Math.cos(a) * speed;
     }
 
     public void movebackward() {
-        x -= Math.sin(a);
-        y += Math.cos(a);
+        x -= Math.sin(a) * speed;
+        y += Math.cos(a) * speed;
     }
     public void draw(Graphics2D g) {
         g.drawImage( rotate(a, sprite), (int)Math.round(x), (int)Math.round(y), null);
