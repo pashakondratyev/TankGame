@@ -105,6 +105,7 @@ public class TankTwo {
     private void turnRight(){
         tmpangle += 3.6;
     }
+
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_A)
             turnLeft = true;
@@ -114,6 +115,8 @@ public class TankTwo {
             moveforward = true;
         if(e.getKeyCode() == KeyEvent.VK_S)
             movebackward = true;
+        //if(e.getKeyCode() == KeyEvent.VK_Q)
+        //    Shoot();
     }
 }
 
