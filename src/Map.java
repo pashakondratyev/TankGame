@@ -1,68 +1,89 @@
-/*
-import java.awt.*;
-import java.util.*;
 import java.io.*;
+import java.util.*;
+import java.awt.image.BufferedImage;
+import java.awt.*;
+import javax.imageio.*;
+import java.io.File;
 
-public class Map {
-    int x, y;
-    char[][] map;
-    Tile[][] tiles;
-    int mapHeight, mapWidth;
-    Scanner sc;
-    ArrayList<String> Maps = new ArrayList<String>();
+public class Map{
+    private Scanner sc;
+    private int tileSize;
+    private int mapWidth;
+    private int mapHeight;
+    private char[][] map;
+    private Tile[][] tiles;
+    private int x;
+    private int y;
+    boolean nextLevel;
+    boolean solid = false;
+    private BufferedImage SpriteSand, SpriteWall;
 
+    public Map(){
 
-    public Map(PlayerOne p, PlayerTwo q, Graphics2D g) {
-
+        FileInputStream fis;
+        ObjectInputStream ois;
         try {
-            sc = new Scanner(new File("map.dat"));
+            sc = new Scanner(new File("Map.dat"));
+            //fis = new FileInputStream("Map.dat");
+            //ois = new ObjectInputStream(fis);
         }
-        catch (Exception e) {
+        catch (Exception e){
             e.printStackTrace();
         }
 
-        mapWidth = Integer.parseInt(sc.nextLine());
-        mapHeight = Integer.parseInt(sc.nextLine());
+        try{
+            SpriteSand = ImageIO.read(new File("Assets/Sand.png"));
+            SpriteWall = ImageIO.read(new File("Assets/Wall.png"));
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
 
+
+        mapWidth = 36;
+        mapHeight = 24;
         map = new char[mapHeight][mapWidth];
         tiles = new Tile[mapHeight][mapWidth];
 
-        int j = 0;
-        while (sc.hasNext()) {
+        String toSplit = "\\s+";
+        for(int i = 0; i < mapHeight; i++){
             String line = sc.nextLine();
-            for (int i = 0; i < mapWidth; i++) {
-                map[i][j] = line.charAt(i);
+            char[] elements = line.toCharArray();
+            System.out.print(elements[0]);
+            for(int j = 0; j < mapWidth; j++){
+                map[i][j] = elements[j];
             }
-            j++;
         }
     }
 
 
-    public void drawTiles(Graphics2D g){
-        x = 0;
-        y = 0;
-        int count = 0;
-        int sprite = 0;
-        boolean solid = false;
-        for(int i = 0; i < mapHeight; i++){
-            x = 0;
-            for(int j = 0; j < mapWidth; j++){
-                int type = map[i][j];
-                if(type == '$'){
-                    Tile wall = new Tile(x, y, "Wall.png", true )
-                    g.drawImage(wall, x, y, null);
-                    solid = false;
-                }
-                else if(type == '#'){
-                    Tile sand = new Tile(x,y, "")
-                    g.drawImage(sand, x, y, null);
+    public void drawTiles(Graphics2D grid) {
+        for (int i = 0; i < mapHeight; i++) {
+            for (int j = 0; j < mapWidth; j++) {
+                char symbol = map[i][j];
+                if (symbol == '$') { //wall
+                    grid.drawImage(SpriteWall, x, y, null);
                     solid = true;
                 }
-                x += tileSize; //move column
+                else if (symbol == '#') { //sand
+                    grid.drawImage(SpriteSand, x, y, null);
+                    solid = false;
+                }
+                else {
+                    grid.drawImage(SpriteSand, x, y, null);
+                    solid = false;
+                }
+
             }
-            y += tileSize; //moves over row ,when 1 is finished (now it should start at 0,0)
         }
     }
 
+    public char[][] getMap(){
+        return map;
+    }
 }
-*/
+       
+
+	
+       
+    

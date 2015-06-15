@@ -27,6 +27,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 
     Missile m;
     Tank t;
+    Map map;
 
     public Game(){
         super();
@@ -51,10 +52,12 @@ public class Game extends JPanel implements Runnable, KeyListener{
     }
 
     public void draw() {
-        g.fillRect(0, 0, WIDTH, HEIGHT);  //TEMP while we work on background
-        g.setColor(Color.WHITE);
+
+        //g.fillRect(0, 0, WIDTH, HEIGHT);  //TEMP while we work on background
+        //g.setColor(Color.WHITE);
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
+        map.drawTiles(g);
         m.draw(g);
         t.draw(g);
     }
@@ -95,6 +98,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
         g = (Graphics2D) image.getGraphics();
         t = new Tank(this);
         m = new Missile(this);
+        map = new Map();
     }
 
     private void drawToScreen(){

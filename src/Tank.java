@@ -11,7 +11,7 @@ import java.lang.Math;
 public class Tank {
     double x = 0;
     double xa = 0;
-    double y = 330;
+    double y = 50;
     double ya = 0;
     double a = 0;
     int tmpangle = 0;
@@ -46,7 +46,6 @@ public class Tank {
             moveforward();
         else if (movebackward)
             movebackward();
-        System.out.println(tmpangle);
     }
 
 
@@ -88,9 +87,9 @@ public class Tank {
 
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT)
-            tmpangle -= 10;
+            tmpangle -= 15;
         if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-            tmpangle += 10;
+            tmpangle += 15;
         if (e.getKeyCode() == KeyEvent.VK_UP)
             moveforward = true;
         if (e.getKeyCode() == KeyEvent.VK_DOWN)
