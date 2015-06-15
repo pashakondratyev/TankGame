@@ -2,7 +2,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.*;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
 import java.awt.event.KeyEvent;
@@ -13,8 +12,8 @@ import java.awt.image.BufferedImage;
 @SuppressWarnings("serial")
 public class Game extends JPanel implements Runnable, KeyListener{
 
-    public static final int WIDTH = 720;
-    public static final int HEIGHT = 480;
+    public static final int WIDTH = 1024;
+    public static final int HEIGHT = 640;
 
     int x = 0;
     int y = 0;
@@ -26,7 +25,9 @@ public class Game extends JPanel implements Runnable, KeyListener{
     private long targetTime = 1000 / FPS;
 
     Missile m;
-    Tank t;
+    TankOne t;
+    TankTwo s;
+    Map map;
 
     public Game(){
         super();
@@ -37,6 +38,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 
     private void update() {
         //m.update();
+        s.update();
         t.update();
     }
 
@@ -51,11 +53,14 @@ public class Game extends JPanel implements Runnable, KeyListener{
     }
 
     public void draw() {
-        g.fillRect(0, 0, WIDTH, HEIGHT);  //TEMP while we work on background
-        g.setColor(Color.WHITE);
+
+        //g.fillRect(0, 0, WIDTH, HEIGHT);  //TEMP while we work on background
+        //g.setColor(Color.WHITE);
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-        m.draw(g);
+        map.drawTiles(g);
+        //m.draw(g);
+        s.draw(g);
         t.draw(g);
     }
 
@@ -75,7 +80,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
             startTime = System.nanoTime();
             update();
             draw();
-            gameOver();
+            //gameOver();
             drawToScreen();
 
             elapsedTime = System.nanoTime() - startTime;
@@ -93,8 +98,11 @@ public class Game extends JPanel implements Runnable, KeyListener{
         isRunning = true;
         image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         g = (Graphics2D) image.getGraphics();
-        t = new Tank(this);
         m = new Missile(this);
+        map = new Map();
+        map.drawTiles(g);
+        t = new TankOne(this, map);
+        s = new TankTwo(this, map);
     }
 
     private void drawToScreen(){
@@ -108,11 +116,13 @@ public class Game extends JPanel implements Runnable, KeyListener{
 
     public void keyReleased(KeyEvent e) {
         t.keyReleased(e);
+        s.keyReleased(e);
     }
 
 
     public void keyPressed(KeyEvent e) {
         t.keyPressed(e);
+        s.keyPressed(e);
         //if e.getKeyCode() == KeyEvent.VK_SPACE
     }
 
