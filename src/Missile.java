@@ -19,19 +19,40 @@ public class Missile {
         }
 
         void update() {
-            int projx = (int)Math.round((x + xa))/31;
-            int projy = (int)Math.round((y - ya))/31;
-            if( !game.map.isTileSolid(projx, projy)) {
+            int projx = (int) Math.round((x + xa)) / 31;
+            int projy = (int) Math.round((y - ya)) / 31;
+            double cx = game.map.getTiles()[projx][projy].getX();
+            double cy = game.map.getTiles()[projx][projy].getY();
+            if (!game.map.isTileSolid(projx, projy)) {
                 x += xa;
                 y -= ya;
             }
-            else {
+            if (game.map.isTileSolid(projx, projy)) {
+                if (Math.abs(xa) < Math.abs(cx - x) || Math.abs(ya) < Math.abs(cy - y)) {
+                    xa = Math.abs(xa * (cx - x)) / x;
+                    ya = Math.abs(ya * (cy - y)) / y;
+                }
+
+            if (x < cx) {
                 x -= xa;
-                y += ya;
+                y -= ya;
             }
-
-
+            if (x > cx) {
+                    x -= xa;
+                    y -= ya;
+                }
+            else if (y <= cy -16) {
+                    x += xa;
+                    y += ya;
+                }
+            else if (y >= cy + 16) {
+                    x += xa;
+                    y += ya;
+                }
+            }
         }
+
+
 
 
         public void draw(Graphics2D g) {
