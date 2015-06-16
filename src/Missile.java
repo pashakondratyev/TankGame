@@ -6,7 +6,8 @@ public class Missile {
         double y = 0;
         double xa = 0;
         double ya = 0;
-        double speed = 1.3;
+        double speed = 3;
+        int bounces;
         private Game game;
 
 
@@ -21,49 +22,27 @@ public class Missile {
         void update() {
             int projx = (int) (x + xa) / 32;
             int projy = (int) (y - ya) / 32;
-            double cx = game.map.getTileMap()[projy][projx].getX();
-            double cy = game.map.getTileMap()[projy][projx].getY();
-
-            x += xa;
-            y -= ya;
-
             if (!game.map.isTileSolid(projx, projy)) {
                 x += xa;
                 y -= ya;
             }
             if (game.map.isTileSolid(projx, projy)) {
-                    if (Math.abs(xa) < Math.abs(cx - x)){
-                        xa = -(xa * (cx - x)) / x;
-                        ya = Math.abs(ya * (cy - y)) / y;
-                    }
-                    if (Math.abs(ya) < Math.abs(cy - y)){
-                        ya = -(ya * (cy - y)) / y;
-                        xa = Math.abs(xa * (cx - x)) / x;
-                    }
-                    if (x < cx) {//left
-                        x += xa;
-                        y += ya;
-                        //System.out.println("1");
-                    }
-                    if (x > cx) {//right
-                        x -= xa;
-                        y -= ya;
-                        //System.out.println("2");
-                    }
-                    if (y <= cy ) {
-                        x += xa;
-                        y += ya;
-                        //System.out.println("3");
-                    }
-                    if (y >= cy ) {
-                        x += xa;
-                        y += ya;
-                        //System.out.println("4");
-                    }
+                bounces ++;
+                if( game.map.isTileSolid(projx, (int)y/32) ){
+                    xa = -xa;
+                }
+                if( game.map.isTileSolid((int)x/32, projy)){
+                    ya = -ya;
+                }
 
+                x += xa;
+                y -= ya;
             }
         }
 
+        public int getBounces(){
+            return bounces;
+        }
 
 
         public void draw(Graphics2D g) {

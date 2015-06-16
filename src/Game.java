@@ -13,8 +13,8 @@ import java.util.*;
 @SuppressWarnings("serial")
 public class Game extends JPanel implements Runnable, KeyListener{
 
-    public static final int WIDTH = 1024;
-    public static final int HEIGHT = 640;
+    public static final int WIDTH = 1024; //x
+    public static final int HEIGHT = 640; //y
 
     int x = 0;
     int y = 0;
@@ -49,8 +49,14 @@ public class Game extends JPanel implements Runnable, KeyListener{
         s.update();
         t.update();
         {
+            for( int i = 0; i < m.size(); i++){
+                if(m.get(i).getBounces() == 5){
+                    m.remove(i);
+                }
+            }
             for (Missile mis : m)
                 mis.update();
+
         }
     }
 

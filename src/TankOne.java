@@ -11,12 +11,13 @@ public class TankOne {
     double x;
     double y;
     double a = 0;
-    double speed = 1.2;
+    double speed = 1.5;
     int tmpangle = 0;
     private Game game;
     private Map map;
     private BufferedImage sprite, fireSprite;
     boolean moveforward, movebackward, turnLeft, turnRight;
+    private int shots = 5;
 
     public TankOne(Game game, Map map) {
         this.game= game;
@@ -121,8 +122,9 @@ public class TankOne {
             moveforward = true;
         if (e.getKeyCode() == KeyEvent.VK_DOWN)
             movebackward = true;
-        if(e.getKeyCode() == KeyEvent.VK_M)
-            game.m.add(new Missile(this.game, this.x, this.y, Math.sin(a), Math.cos(a) ));
+        if(e.getKeyCode() == KeyEvent.VK_M) {
+            game.m.add(new Missile(this.game, this.x, this.y, Math.sin(a), Math.cos(a)));
+        }
     }
 }
 
