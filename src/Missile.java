@@ -19,10 +19,10 @@ public class Missile {
         }
 
         void update() {
-            int projx = (int) Math.round((x + xa)) / 31;
-            int projy = (int) Math.round((y - ya)) / 31;
-            double cx = game.map.getTileMap()[projx][projy].getX();
-            double cy = game.map.getTileMap()[projx][projy].getY();
+            int projx = (int) Math.round((x + xa)) / 32;
+            int projy = (int) Math.round((y - ya)) / 32;
+            double cx = game.map.getTileMap()[projy][projx].getX();
+            double cy = game.map.getTileMap()[projy][projx].getY();
             if (!game.map.isTileSolid(projx, projy)) {
                 x += xa;
                 y -= ya;

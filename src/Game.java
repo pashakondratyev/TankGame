@@ -99,11 +99,9 @@ public class Game extends JPanel implements Runnable, KeyListener{
      public void gameOver() {
          if(checkTankTwo()) {
              TankTwoAlive = false; // green tank dies
-             TankOneWins += 1;
          }
          if(checkTankOne()) {
              TankOneAlive = false;// red tank dies
-             TankTwoWins += 1;
          }
      }
 
@@ -113,15 +111,13 @@ public class Game extends JPanel implements Runnable, KeyListener{
             long startTime;
             long elapsedTime;
             long waitTime;
-            while (isRunning) {
+            while ( TankTwoAlive && TankOneAlive) {
                 startTime = System.nanoTime();
                 update();
+
                 draw();
-                drawToScreen();
                 gameOver();
-                if (!(TankTwoAlive || TankOneAlive)) {
-                    isRunning = false;
-                }
+                drawToScreen();
                 elapsedTime = System.nanoTime() - startTime;
                 waitTime = targetTime - elapsedTime / 100000;
                 try {
@@ -131,9 +127,14 @@ public class Game extends JPanel implements Runnable, KeyListener{
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                if (!(TankTwoAlive || TankOneAlive)) {
-                    isRunning = false;
-                }
+            }
+            if(TankOneAlive){
+                System.out.println("Green Tank wins this round");
+                TankOneWins ++;
+            }
+            if(TankTwoAlive){
+                System.out.println("Red Tank wins this round");
+                TankTwoWins ++;
             }
             System.out.println( "Green Tank: "+ TankOneWins);
             System.out.println( "Red Tank: "+ TankTwoWins);
