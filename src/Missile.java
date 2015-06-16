@@ -6,7 +6,7 @@ public class Missile {
         double y = 0;
         double xa = 0;
         double ya = 0;
-        double speed = 3;
+        double speed = 2;
         private Game game;
 
 
@@ -31,44 +31,35 @@ public class Missile {
                 y -= ya;
             }
             if (game.map.isTileSolid(projx, projy)) {
+                    if (Math.abs(xa) < Math.abs(cx - x)){
+                        xa = -(xa * (cx - x)) / x;
+                        ya = Math.abs(ya * (cy - y)) / y;
+                    }
+                    else if (Math.abs(ya) < Math.abs(cy - y)){
+                        ya = -(ya * (cy - y)) / y;
+                        xa = Math.abs(xa * (cx - x)) / x;
+                    }
+                    else if (x < cx) {//left
+                        x += xa;
+                        y += ya;
+                        System.out.println("1");
+                    }
+                    else if (x > cx) {//right
+                        x -= xa;
+                        y -= ya;
+                        System.out.println("2");
+                    }
+                    else if (y <= cy ) {
+                        x += xa;
+                        y += ya;
+                        System.out.println("3");
+                    }
+                    else if (y >= cy ) {
+                        x += xa;
+                        y += ya;
+                        System.out.println("4");
+                    }
 
-                if (Math.abs(xa) < Math.abs(cx - x)){
-                    xa = -(xa * (cx - x)) / x;
-                    ya = Math.abs(ya * (cy - y)) / y;
-                }
-                if (Math.abs(xa) < Math.abs(cx + x)){
-                    xa = (xa * (cx - x)) / x;
-                    ya = -(ya * (cy - y)) / y;
-                    System.out.println("hi");
-                }
-
-                /*
-                if (Math.abs(xa) < Math.abs(cx - x) || Math.abs(ya) > Math.abs(cy - y)) {
-                    xa = -(xa * (cx - x)) / x;
-                    ya = Math.abs(ya * (cy - y)) / y;
-                    System.out.println("hi");
-                }
-                else if (x < cx) {//left
-                    x += xa;
-                    y += ya;
-                    System.out.println("1");
-                }
-                else if (x > cx) {//right
-                    x -= xa;
-                    y -= ya;
-                    System.out.println("2");
-                }
-                else if (y <= cy ) {
-                    x += xa;
-                    y += ya;
-                    System.out.println("3");
-                }
-                else if (y >= cy ) {
-                    x += xa;
-                    y += ya;
-                    System.out.println("4");
-                }
-                */
             }
         }
 

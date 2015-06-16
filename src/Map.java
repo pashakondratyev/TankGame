@@ -22,12 +22,12 @@ public class Map{
     private int Player1x, Player1y;
     private int Player2x, Player2y;
 
-    public Map(){
+    public Map( String path ){
 
         FileInputStream fis;
         ObjectInputStream ois;
         try {
-            sc = new Scanner(new File("Map.dat"));
+            sc = new Scanner(new File(path));
             //fis = new FileInputStream("Map.dat");
             //ois = new ObjectInputStream(fis);
         }
