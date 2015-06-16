@@ -18,7 +18,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
 
     int x = 0;
     int y = 0;
-    Boolean isRunning, displayMenu;
+    Boolean isRunning, yes;
     Graphics2D g;
     BufferedImage image;
     Thread thread;
@@ -29,9 +29,15 @@ public class Game extends JPanel implements Runnable, KeyListener{
     TankOne t;
     TankTwo s;
     Map map;
+    private int TankOneWins = 0;
+    private int TankTwoWins = 0;
+    private Boolean TankOneAlive, TankTwoAlive;
 
     public Game(){
         super();
+        TankOneWins = 0;
+        TankTwoWins = 0;
+        yes = true;
         setPreferredSize(new Dimension(WIDTH,HEIGHT));
         setFocusable(true);
         requestFocus();
@@ -46,7 +52,6 @@ public class Game extends JPanel implements Runnable, KeyListener{
                 mis.update();
         }
     }
-
 
     public void addNotify() {
         super.addNotify();
@@ -71,34 +76,68 @@ public class Game extends JPanel implements Runnable, KeyListener{
             mis.draw(g);
     }
 
-   /* public void gameOver() {
-        if (t.x == m.x && t.y == m.y) {
-            JOptionPane.showMessageDialog(this, "GG", "GG", JOptionPane.YES_NO_OPTION);
-            System.exit(ABORT);
-        }
-    }*/
-
-    public void run(){
-        init();
-        long startTime;
-        long elapsedTime;
-        long waitTime;
-        while(isRunning){
-            startTime = System.nanoTime();
-            update();
-            draw();
-            //gameOver();
-            drawToScreen();
-
-            elapsedTime = System.nanoTime() - startTime;
-            waitTime = targetTime - elapsedTime / 100000;
-            try {
-                if (waitTime < 0)
-                    waitTime = 0;
-                Thread.sleep(waitTime);
-            } catch (Exception e) {
-                e.printStackTrace();
+    public Boolean checkTankTwo(){
+        Boolean dead = false;
+        for( Missile mis : m ){
+            if((int)s.x/32 == (int)mis.x/32 && (int)s.y/32 == (int)mis.y/32){
+                dead = true;
             }
+        }
+        return dead;
+    }
+
+    public Boolean checkTankOne(){
+        Boolean dead = false;
+        for( Missile mis : m ){
+            if((int)t.x/32 == (int)mis.x/32 && (int)t.y/32 == (int)mis.y/32){
+                dead = true;
+            }
+        }
+        return dead;
+    }
+
+     public void gameOver() {
+         if(checkTankTwo()) {
+             TankTwoAlive = false; // green tank dies
+             TankOneWins += 1;
+         }
+         if(checkTankOne()) {
+             TankOneAlive = false;// red tank dies
+             TankTwoWins += 1;
+         }
+     }
+
+    public void run() {
+        while (yes) {
+            init();
+            long startTime;
+            long elapsedTime;
+            long waitTime;
+            while (isRunning) {
+                startTime = System.nanoTime();
+                update();
+                draw();
+                drawToScreen();
+                gameOver();
+                if (!(TankTwoAlive || TankOneAlive)) {
+                    isRunning = false;
+                }
+                elapsedTime = System.nanoTime() - startTime;
+                waitTime = targetTime - elapsedTime / 100000;
+                try {
+                    if (waitTime < 0)
+                        waitTime = 0;
+                    Thread.sleep(waitTime);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (!(TankTwoAlive || TankOneAlive)) {
+                    isRunning = false;
+                }
+            }
+            System.out.println( "Green Tank: "+ TankOneWins);
+            System.out.println( "Red Tank: "+ TankTwoWins);
+            System.out.println( "=============================");
         }
     }
     public void init(){
@@ -110,6 +149,8 @@ public class Game extends JPanel implements Runnable, KeyListener{
         map.drawTiles(g);
         t = new TankOne(this, map);
         s = new TankTwo(this, map);
+        TankOneAlive = true;
+        TankTwoAlive = true;
         m = new ArrayList<Missile>();
     }
 

@@ -11,7 +11,7 @@ public class TankTwo {
     double x;
     double y;
     double a = 0;
-    double speed = 1.2;
+    double speed = 1.3;
     int tmpangle = 180;
     private Game game;
     private Map map;

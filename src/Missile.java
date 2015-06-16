@@ -6,7 +6,7 @@ public class Missile {
         double y = 0;
         double xa = 0;
         double ya = 0;
-        double speed = 2.5;
+        double speed = 3;
         private Game game;
 
 
@@ -35,6 +35,6 @@ public class Missile {
 
 
         public void draw(Graphics2D g) {
-            g.fillOval((int)x,(int)y, 10, 10);
+            g.fillOval((int)(x + xa*-2),(int)(y + ya*-2), 10, 10);
         }
     }
