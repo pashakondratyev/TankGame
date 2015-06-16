@@ -54,8 +54,13 @@ public class Game extends JPanel implements Runnable, KeyListener{
                     m.remove(i);
                 }
             }
-            for (Missile mis : m)
-                mis.update();
+            try {
+                for (Missile mis : m)
+                    mis.update();
+            }
+            catch (Exception e){
+
+            }
 
         }
     }
@@ -79,26 +84,41 @@ public class Game extends JPanel implements Runnable, KeyListener{
         //m.draw(g);
         s.draw(g);
         t.draw(g);
-        for (Missile mis : m)
-            mis.draw(g);
+        try {
+            for (Missile mis : m)
+                mis.draw(g);
+        }
+        catch (Exception e){
+
+        }
     }
 
     public Boolean checkTankTwo(){
         Boolean dead = false;
-        for( Missile mis : m ){
-            if((int)s.x/32 == (int)mis.x/32 && (int)s.y/32 == (int)mis.y/32){
-                dead = true;
+        try {
+            for (Missile mis : m) {
+                if ((int) s.x / 32 == (int) mis.x / 32 && (int) s.y / 32 == (int) mis.y / 32) {
+                    dead = true;
+                }
             }
+        }
+        catch (Exception e){
+
         }
         return dead;
     }
 
     public Boolean checkTankOne(){
         Boolean dead = false;
-        for( Missile mis : m ){
-            if((int)t.x/32 == (int)mis.x/32 && (int)t.y/32 == (int)mis.y/32){
-                dead = true;
+        try {
+            for (Missile mis : m) {
+                if ((int) t.x / 32 == (int) mis.x / 32 && (int) t.y / 32== (int) mis.y / 32) {
+                    dead = true;
+                }
             }
+        }
+        catch (Exception e){
+
         }
         return dead;
     }

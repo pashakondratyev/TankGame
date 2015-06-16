@@ -6,16 +6,16 @@ public class Missile {
         double y = 0;
         double xa = 0;
         double ya = 0;
-        double speed = 3;
+        double speed = 4;
         int bounces;
         private Game game;
 
 
-        public Missile(Game game, double xSpawn, double ySpawn, double xdir, double ydir) {
-            x = xSpawn + xdir * 32;
-            y = ySpawn - ydir  * 32 ;
-            xa = xdir * speed;
-            ya = ydir * speed;
+        public Missile(Game game, double xSpawn, double ySpawn, double angle) {
+            x = xSpawn + 36*Math.sin(angle);// + 32*Math.sin(angle);
+            y = ySpawn - 36*Math.cos(angle) +8;// - 32*Math.cos(angle);
+            xa = Math.sin(angle)* speed;
+            ya = Math.cos(angle)* speed;
             this.game= game;
         }
 
@@ -34,7 +34,6 @@ public class Missile {
                 if( game.map.isTileSolid((int)x/32, projy)){
                     ya = -ya;
                 }
-
                 x += xa;
                 y -= ya;
             }

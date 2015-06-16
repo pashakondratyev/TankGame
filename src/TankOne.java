@@ -11,7 +11,7 @@ public class TankOne {
     double x;
     double y;
     double a = 0;
-    double speed = 1.5;
+    double speed = 2;
     int tmpangle = 0;
     private Game game;
     private Map map;
@@ -123,7 +123,7 @@ public class TankOne {
         if (e.getKeyCode() == KeyEvent.VK_DOWN)
             movebackward = true;
         if(e.getKeyCode() == KeyEvent.VK_M) {
-            game.m.add(new Missile(this.game, this.x, this.y, Math.sin(a), Math.cos(a)));
+            game.m.add(new Missile(this.game, this.x, this.y , a));
         }
     }
 }
