@@ -21,8 +21,8 @@ public class Missile {
         void update() {
             int projx = (int) Math.round((x + xa)) / 31;
             int projy = (int) Math.round((y - ya)) / 31;
-            double cx = game.map.getTiles()[projx][projy].getX();
-            double cy = game.map.getTiles()[projx][projy].getY();
+            double cx = game.map.getTileMap()[projx][projy].getX();
+            double cy = game.map.getTileMap()[projx][projy].getY();
             if (!game.map.isTileSolid(projx, projy)) {
                 x += xa;
                 y -= ya;

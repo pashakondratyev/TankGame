@@ -28,7 +28,7 @@ public class TankOne {
         y = map.getPlayer1y();
         System.out.println(y);
         try{
-            sprite = ImageIO.read(new File("C:\\Users\\Bina\\Desktop\\TankGame\\TankGame\\src\\Assets\\PlayerOne.png"));
+            sprite = ImageIO.read(new File("Assets" +File.separator+"PlayerOne.png"));
         }
         catch (Exception e){
             e.printStackTrace();
