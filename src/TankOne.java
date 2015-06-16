@@ -11,7 +11,7 @@ public class TankOne {
     double x;
     double y;
     double a = 0;
-    double speed = 1.3;
+    double speed = 1.2;
     int tmpangle = 0;
     private Game game;
     private Map map;
@@ -23,10 +23,7 @@ public class TankOne {
         this.map = map;
 
         x = map.getPlayer1x();
-        System.out.println(x);
-
         y = map.getPlayer1y();
-        System.out.println(y);
         try{
             sprite = ImageIO.read(new File("Assets" +File.separator+"PlayerOne.png"));
         }
