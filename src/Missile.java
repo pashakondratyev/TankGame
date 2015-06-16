@@ -8,24 +8,27 @@ public class Missile {
         int ya = 1;
         private Game game;
 
-        public Missile(Game game, int xSpawn, int ySpawn) {
+        public Missile(Game game, int xSpawn, int ySpawn, double xdir, double ydir) {
             x = xSpawn;
             y = ySpawn;
+            xa = xdir;
+            ya = ydir;
             this.game= game;
         }
 
         void update() {
-            if (x + xa < 0)
-                xa = 1;
-            if (x + xa > game.getWidth() - 30)
-                xa = -1;
-            if (y + ya < 0)
-                ya = 1;
-            if (y + ya > game.getHeight() - 30)
-                ya = -1;
+            int projx = (int)Math.round((x + xa))/31;
+            int projy = (int)Math.round((y - ya))/31;
+            if( !game.map.isTileSolid(projx, projy)) {
+                x += xa;
+                y -= ya;
+            }
+            else {
+                x -= xa;
+                y += ya;
+            }
 
-            x = x + xa;
-            y = y + ya;
+
         }
 
         public void draw(Graphics2D g) {
