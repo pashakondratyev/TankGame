@@ -28,7 +28,7 @@ public class TankOne {
         y = map.getPlayer1y();
         System.out.println(y);
         try{
-            sprite = ImageIO.read(new File("Assets" + File.separator + "PlayerOne.png"));
+            sprite = ImageIO.read(new File("C:\\Users\\Bina\\Desktop\\TankGame\\TankGame\\src\\Assets\\PlayerOne.png"));
         }
         catch (Exception e){
             e.printStackTrace();
@@ -85,7 +85,9 @@ public class TankOne {
         AffineTransform tx = new AffineTransform();
 
         tx.scale(.25,.25);
-        tx.rotate(rotationRequired, locationX, locationY);
+        tx.rotate(
+
+                rotationRequired, locationX, locationY);
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
         return op.filter(i, null);
     }
