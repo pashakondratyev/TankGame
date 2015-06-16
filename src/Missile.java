@@ -11,8 +11,8 @@ public class Missile {
 
 
         public Missile(Game game, double xSpawn, double ySpawn, double xdir, double ydir) {
-            x = xSpawn;
-            y = ySpawn;
+            x = xSpawn + xdir * 32;
+            y = ySpawn - ydir  * 32 ;
             xa = xdir * speed;
             ya = ydir * speed;
             this.game= game;
@@ -23,6 +23,9 @@ public class Missile {
             int projy = (int) Math.round((y - ya)) / 32;
             double cx = game.map.getTileMap()[projy][projx].getX();
             double cy = game.map.getTileMap()[projy][projx].getY();
+
+            x += xa;
+            y -= ya;
             if (!game.map.isTileSolid(projx, projy)) {
                 x += xa;
                 y -= ya;
@@ -51,7 +54,6 @@ public class Missile {
                 }
             }
         }
-
 
 
 

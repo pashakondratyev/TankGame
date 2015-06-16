@@ -113,8 +113,9 @@ public class Game extends JPanel implements Runnable, KeyListener{
             long waitTime;
             while ( TankTwoAlive && TankOneAlive) {
                 startTime = System.nanoTime();
-                update();
+
                 draw();
+                update();
                 gameOver();
                 drawToScreen();
                 elapsedTime = System.nanoTime() - startTime;

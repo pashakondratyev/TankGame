@@ -118,7 +118,7 @@ public class TankOne {
         if (e.getKeyCode() == KeyEvent.VK_DOWN)
             movebackward = true;
         if(e.getKeyCode() == KeyEvent.VK_M)
-            game.m.add(new Missile(this.game, this.x + Math.cos(a) * speed, this.y - Math.sin(a) * speed, Math.sin(a), Math.cos(a) ));
+            game.m.add(new Missile(this.game, this.x, this.y, Math.sin(a), Math.cos(a) ));
     }
 }
 
