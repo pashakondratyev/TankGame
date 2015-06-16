@@ -115,8 +115,8 @@ public class TankTwo {
             moveforward = true;
         if(e.getKeyCode() == KeyEvent.VK_S)
             movebackward = true;
-        //if(e.getKeyCode() == KeyEvent.VK_Q)
-        //    Shoot();
+         if(e.getKeyCode() == KeyEvent.VK_Q)
+            game.m.add(new Missile(this.game, (int)this.x, (int)this.y, Math.sin(a), Math.cos(a) ));
     }
 }
 
