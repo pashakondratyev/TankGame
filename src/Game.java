@@ -25,7 +25,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
     private int FPS = 120; // frames per second
     private long targetTime = 1000 / FPS;
 
-    ArrayList<Missile> m;
+    LinkedList<Missile> m;
     TankOne t;
     TankTwo s;
     Map map;
@@ -146,13 +146,17 @@ public class Game extends JPanel implements Runnable, KeyListener{
         image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         g = (Graphics2D) image.getGraphics();
         //m = new Missile(this);
-        map = new Map();
+        Random r = new Random();
+        maps = new LinkedList<Map>();
+        for (int i = 0; i < 5; i++)
+            maps.add(new Map("map" + i + ".dat"));
+        map = maps.get(r.nextInt(5));
         map.drawTiles(g);
         t = new TankOne(this, map);
         s = new TankTwo(this, map);
         TankOneAlive = true;
         TankTwoAlive = true;
-        m = new ArrayList<Missile>();
+        m = new LinkedList<Missile>();
     }
 
     private void drawToScreen(){
