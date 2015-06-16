@@ -1,5 +1,6 @@
 # TankGame
-Paul Kondratyev, Ali Inan, Susan Wahooligans
+Paul Kondratyev, Ali Inan, Susan Wu
+
 Period 3
 
 This is a top down 2 player tank shooter game made with Java AWT and Swing libraries.
