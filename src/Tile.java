@@ -10,8 +10,8 @@ public class Tile {
 
     public Tile(int x, int y, boolean t){
         type = t;
-        cx = (double)(x+16);
-        cy = (double)(y+16);
+        cx = (double)(x +16 );
+        cy = (double)(y +16 );
     }
 
     public double getX() { return cx; }
