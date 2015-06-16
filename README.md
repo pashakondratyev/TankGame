@@ -12,5 +12,5 @@ Hit the other tank with your bullet to win.
 Makes uses of linked lists in order to add and store instances of the bullet class each time a tank fires as well as to store and cycle through the different maps each time the round restarts.
 
 Known Bugs:
-\nBullet/Wall collision is buggy, at some angles in particular
-\n Spamming too many bullets will cause the program to crash
+Bullet/Wall collision is buggy, particularly at some specific angles/directions.
+Spamming too many bullets will cause the program to crash.
