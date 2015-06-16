@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.util.*;
 
 
 @SuppressWarnings("serial")
@@ -24,7 +25,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
     private int FPS = 120; // frames per second
     private long targetTime = 1000 / FPS;
 
-    Missile m;
+    ArrayList<Missile> m;
     TankOne t;
     TankTwo s;
     Map map;
@@ -40,6 +41,10 @@ public class Game extends JPanel implements Runnable, KeyListener{
         //m.update();
         s.update();
         t.update();
+        {
+            for (Missile mis : m)
+                mis.update();
+        }
     }
 
 
@@ -62,14 +67,16 @@ public class Game extends JPanel implements Runnable, KeyListener{
         //m.draw(g);
         s.draw(g);
         t.draw(g);
+        for (Missile mis : m)
+            mis.draw(g);
     }
 
-    public void gameOver() {
+   /* public void gameOver() {
         if (t.x == m.x && t.y == m.y) {
             JOptionPane.showMessageDialog(this, "GG", "GG", JOptionPane.YES_NO_OPTION);
             System.exit(ABORT);
         }
-    }
+    }*/
 
     public void run(){
         init();
@@ -103,6 +110,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
         map.drawTiles(g);
         t = new TankOne(this, map);
         s = new TankTwo(this, map);
+        m = new ArrayList<Missile>();
     }
 
     private void drawToScreen(){
