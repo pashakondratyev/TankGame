@@ -4,9 +4,10 @@ import javax.swing.*;
 public class Missile {
         int x = 0;
         int y = 0;
-        int xa = 1;
-        int ya = 1;
+        double xa = 1;
+        double ya = 1;
         private Game game;
+
 
         public Missile(Game game, int xSpawn, int ySpawn, double xdir, double ydir) {
             x = xSpawn;
@@ -30,6 +31,7 @@ public class Missile {
 
 
         }
+
 
         public void draw(Graphics2D g) {
             g.fillOval(x, y, 10, 10);
