@@ -9,4 +9,8 @@ Player 1 uses the arrow keys to move (left and right to rotate, forward and back
 and m to fire.
 Player 2 uses WASD for movement and q for fire.
 Hit the other tank with your bullet to win.
-Makes uses of linked lists in order to add and store instances of the bullet class each time a tank fires.
+Makes uses of linked lists in order to add and store instances of the bullet class each time a tank fires as well as to store and cycle through the different maps each time the round restarts.
+
+Known Bugs:
+Bullet/Wall collision is buggy, at some angles in particular
+Spamming too many bullets will cause the program to crash
