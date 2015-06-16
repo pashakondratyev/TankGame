@@ -15,7 +15,7 @@ public class TankOne {
     int tmpangle = 0;
     private Game game;
     private Map map;
-    private BufferedImage sprite, missile;
+    private BufferedImage sprite, fireSprite;
     boolean moveforward, movebackward, turnLeft, turnRight;
 
     public TankOne(Game game, Map map) {
@@ -26,6 +26,7 @@ public class TankOne {
         y = map.getPlayer1y();
         try{
             sprite = ImageIO.read(new File("Assets" +File.separator+"PlayerOne.png"));
+            fireSprite = ImageIO.read(new File("Assets" + File.separator + "Explosion.png"));
         }
         catch (Exception e){
             e.printStackTrace();
@@ -73,6 +74,10 @@ public class TankOne {
     }
     public void draw(Graphics2D g) {
         g.drawImage( rotate(a, sprite), (int)Math.round(x), (int)Math.round(y), null);
+        if(game.checkTankOne()) {
+            System.out.println("hi");
+            g.drawImage(rotate(a, fireSprite), (int) Math.round(x), (int) Math.round(y), null);
+        }
     }
 
     public BufferedImage rotate( double degree , BufferedImage i) {

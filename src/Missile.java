@@ -31,27 +31,44 @@ public class Missile {
                 y -= ya;
             }
             if (game.map.isTileSolid(projx, projy)) {
-                if (Math.abs(xa) < Math.abs(cx - x) || Math.abs(ya) < Math.abs(cy - y)) {
-                    xa = Math.abs(xa * (cx - x)) / x;
+
+                if (Math.abs(xa) < Math.abs(cx - x)){
+                    xa = -(xa * (cx - x)) / x;
                     ya = Math.abs(ya * (cy - y)) / y;
                 }
+                if (Math.abs(xa) < Math.abs(cx + x)){
+                    xa = (xa * (cx - x)) / x;
+                    ya = -(ya * (cy - y)) / y;
+                    System.out.println("hi");
+                }
 
-            if (x < cx) {
-                x -= xa;
-                y -= ya;
-            }
-            if (x > cx) {
+                /*
+                if (Math.abs(xa) < Math.abs(cx - x) || Math.abs(ya) > Math.abs(cy - y)) {
+                    xa = -(xa * (cx - x)) / x;
+                    ya = Math.abs(ya * (cy - y)) / y;
+                    System.out.println("hi");
+                }
+                else if (x < cx) {//left
+                    x += xa;
+                    y += ya;
+                    System.out.println("1");
+                }
+                else if (x > cx) {//right
                     x -= xa;
                     y -= ya;
+                    System.out.println("2");
                 }
-            else if (y <= cy ) {
+                else if (y <= cy ) {
                     x += xa;
                     y += ya;
+                    System.out.println("3");
                 }
-            else if (y >= cy ) {
+                else if (y >= cy ) {
                     x += xa;
                     y += ya;
+                    System.out.println("4");
                 }
+                */
             }
         }
 

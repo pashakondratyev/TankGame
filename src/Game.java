@@ -113,11 +113,10 @@ public class Game extends JPanel implements Runnable, KeyListener{
             long waitTime;
             while ( TankTwoAlive && TankOneAlive) {
                 startTime = System.nanoTime();
-
                 draw();
                 update();
-                gameOver();
                 drawToScreen();
+                gameOver();
                 elapsedTime = System.nanoTime() - startTime;
                 waitTime = targetTime - elapsedTime / 100000;
                 try {
@@ -139,6 +138,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
             System.out.println( "Green Tank: "+ TankOneWins);
             System.out.println( "Red Tank: "+ TankTwoWins);
             System.out.println( "=============================");
+
         }
     }
     public void init(){
