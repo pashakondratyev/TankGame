@@ -11,8 +11,8 @@ public class Missile {
 
 
         public Missile(Game game, double xSpawn, double ySpawn, double xdir, double ydir) {
-            x = xSpawn + xdir + 16;
-            y = ySpawn + ydir * -10 - 10 ;
+            x = xSpawn;
+            y = ySpawn;
             xa = xdir * speed;
             ya = ydir * speed;
             this.game= game;
@@ -56,6 +56,6 @@ public class Missile {
 
 
         public void draw(Graphics2D g) {
-            g.fillOval((int)(x + xa),(int)(y + ya), 10, 10);
+            g.fillOval((int)(x),(int)(y), 10, 10);
         }
     }
