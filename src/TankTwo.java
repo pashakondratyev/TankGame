@@ -25,7 +25,7 @@ public class TankTwo {
         x = map.getPlayer2x();
         y = map.getPlayer2y();
         try{
-            sprite = ImageIO.read(new File("C:\\Users\\Bina\\Desktop\\TankGame\\TankGame\\src\\Assets\\PlayerTwo.png"));
+            sprite = ImageIO.read(new File("Assets" + File.separator + "PlayerTwo.png"));
         }
         catch (Exception e){
             e.printStackTrace();
@@ -115,8 +115,8 @@ public class TankTwo {
             moveforward = true;
         if(e.getKeyCode() == KeyEvent.VK_S)
             movebackward = true;
-        if(e.getKeyCode() == KeyEvent.VK_Q)
-            game.m.add(new Missile(this.game, (int)this.x, (int)this.y, Math.sin(a), Math.cos(a) ));
+         if(e.getKeyCode() == KeyEvent.VK_Q)
+            game.m.add(new Missile(this.game, this.x, this.y, Math.sin(a), Math.cos(a) ));
     }
 }
 

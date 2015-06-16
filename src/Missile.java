@@ -2,18 +2,19 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Missile {
-        int x = 0;
-        int y = 0;
-        double xa = 1;
-        double ya = 1;
+        double x = 0;
+        double y = 0;
+        double xa = 0;
+        double ya = 0;
+        double speed = 2.5;
         private Game game;
 
 
-        public Missile(Game game, int xSpawn, int ySpawn, double xdir, double ydir) {
+        public Missile(Game game, double xSpawn, double ySpawn, double xdir, double ydir) {
             x = xSpawn;
             y = ySpawn;
-            xa = xdir;
-            ya = ydir;
+            xa = xdir * speed;
+            ya = ydir * speed;
             this.game= game;
         }
 
@@ -34,6 +35,6 @@ public class Missile {
 
 
         public void draw(Graphics2D g) {
-            g.fillOval(x, y, 10, 10);
+            g.fillOval((int)x,(int)y, 10, 10);
         }
     }
