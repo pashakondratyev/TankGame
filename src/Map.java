@@ -27,7 +27,7 @@ public class Map{
         FileInputStream fis;
         ObjectInputStream ois;
         try {
-            sc = new Scanner(new File("Map.dat"));
+            sc = new Scanner(new File("C:\\Users\\Bina\\Desktop\\TankGame\\TankGame\\src\\map.dat"));
             //fis = new FileInputStream("Map.dat");
             //ois = new ObjectInputStream(fis);
         }
@@ -36,9 +36,9 @@ public class Map{
         }
 
         try{
-            SpriteSand = ImageIO.read(new File("Assets" + File.separator + "Sand.png"));
+            SpriteSand = ImageIO.read(new File("C:\\Users\\Bina\\Desktop\\TankGame\\TankGame\\src\\Assets\\Sand.png"));
             SpriteSand = scaleDown(SpriteSand);
-            SpriteWall = ImageIO.read(new File("Assets" + File.separator + "Wall.png"));
+            SpriteWall = ImageIO.read(new File("C:\\Users\\Bina\\Desktop\\TankGame\\TankGame\\src\\Assets\\Wall.png"));
             SpriteWall = scaleDown(SpriteWall);
         }
         catch (IOException e){
@@ -121,8 +121,8 @@ public class Map{
         return map;
     }
 }
-       
 
-	
-       
-    
+
+
+
+
