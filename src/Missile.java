@@ -6,14 +6,15 @@ public class Missile {
         double y = 0;
         double xa = 0;
         double ya = 0;
+        double speed = 2.5;
         private Game game;
 
 
         public Missile(Game game, double xSpawn, double ySpawn, double xdir, double ydir) {
             x = xSpawn;
             y = ySpawn;
-            xa = xdir;
-            ya = ydir;
+            xa = xdir * speed;
+            ya = ydir * speed;
             this.game= game;
         }
 
