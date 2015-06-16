@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="TankGame:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TankGame_jar</output-path>
+    <root id="archive" name="TankGame.jar">
+      <element id="module-output" name="TankGame" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src/Assets" />
+    </root>
+  </artifact>
+</component>

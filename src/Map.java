@@ -27,7 +27,7 @@ public class Map{
         FileInputStream fis;
         ObjectInputStream ois;
         try {
-            sc = new Scanner(new File(path));
+            sc = new Scanner(this.getClass().getResourceAsStream(path));
             //fis = new FileInputStream("Map.dat");
             //ois = new ObjectInputStream(fis);
         }
@@ -36,9 +36,9 @@ public class Map{
         }
 
         try{
-            SpriteSand = ImageIO.read(new File("Assets" + File.separator + "Sand.png"));
+            SpriteSand = ImageIO.read(this.getClass().getResourceAsStream("Assets" + File.separator + "Sand.png"));
             SpriteSand = scaleDown(SpriteSand);
-            SpriteWall = ImageIO.read(new File("Assets" + File.separator + "Wall.png"));
+            SpriteWall = ImageIO.read(this.getClass().getResourceAsStream("Assets" + File.separator + "Wall.png"));
             SpriteWall = scaleDown(SpriteWall);
         }
         catch (IOException e){

@@ -5,6 +5,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 
 
 public class TankTwo {
@@ -25,8 +26,8 @@ public class TankTwo {
         x = map.getPlayer2x();
         y = map.getPlayer2y();
         try{
-            sprite = ImageIO.read(new File("Assets" + File.separator + "PlayerTwo.png"));
-            fireSprite = ImageIO.read(new File("Assets" + File.separator + "Explosion.png"));
+            sprite = ImageIO.read(this.getClass().getResourceAsStream("Assets" + File.separator + "PlayerTwo.png"));
+            fireSprite = ImageIO.read(this.getClass().getResourceAsStream("Assets" + File.separator + "Explosion.png"));
         }
         catch (Exception e){
             e.printStackTrace();
