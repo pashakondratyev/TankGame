@@ -41,11 +41,11 @@ public class Missile {
                     x -= xa;
                     y -= ya;
                 }
-            else if (y <= cy -16) {
+            else if (y <= cy ) {
                     x += xa;
                     y += ya;
                 }
-            else if (y >= cy + 16) {
+            else if (y >= cy ) {
                     x += xa;
                     y += ya;
                 }
