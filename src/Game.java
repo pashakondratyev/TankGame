@@ -28,6 +28,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
     LinkedList<Missile> m;
     TankOne t;
     TankTwo s;
+    LinkedList<Map> maps;
     Map map;
     private int TankOneWins = 0;
     private int TankTwoWins = 0;
