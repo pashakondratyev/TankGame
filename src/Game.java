@@ -150,7 +150,7 @@ public class Game extends JPanel implements Runnable, KeyListener{
         Random r = new Random();
         maps = new LinkedList<Map>();
         for (int i = 0; i < 5; i++)
-            maps.add(new Map("map" + 2 + ".dat"));
+            maps.add(new Map("map" + i + ".dat"));
         map = maps.get(r.nextInt(5));
         map.drawTiles(g);
         t = new TankOne(this, map);

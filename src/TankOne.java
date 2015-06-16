@@ -75,7 +75,6 @@ public class TankOne {
     public void draw(Graphics2D g) {
         g.drawImage( rotate(a, sprite), (int)Math.round(x), (int)Math.round(y), null);
         if(game.checkTankOne()) {
-            System.out.println("hi");
             g.drawImage(rotate(a, fireSprite), (int) Math.round(x), (int) Math.round(y), null);
         }
     }
